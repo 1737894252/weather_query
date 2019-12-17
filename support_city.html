@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <title>支持的城市</title>
+</head>
+<body>
+    <div class="support">
+
+    </div>
+</body>
+<script>
+        $.ajax({
+            url:"http://api.yytianqi.com/citylist/id/2",
+            dataType:"json",
+            success:function(res){
+                city_data = res;
+                for (var j=0;j<city_data.list.length;j++){
+                    $(".support").append("<h3>"+city_data.list[j].name + "</h3>")
+                        for (var i=0;i<city_data.list[j].list.length;i++){
+                            if (city_data.list[j].list[i].list){
+                                $(".support").append("<h5>"+ city_data.list[j].list[i].name+"</h5>")
+                                for(var k=0;k<city_data.list[j].list[i].list.length;k++)
+                                    $(".support").append(" "+ city_data.list[j].list[i].list[k].name)
+                            }
+                            else {
+                                $(".support").append(" "+ city_data.list[j].list[i].name)
+                            }
+                        }
+                    $(".support").append("</br>")  
+                }
+            }
+        })
+    </script>
+</html>
