@@ -13,7 +13,7 @@
         city_num = ""
         // 获取city_num
         $.ajax({
-            url:"http://api.yytianqi.com/citylist/id/2",
+            url:"https://api.yytianqi.com/citylist/id/2",
             dataType:"json",
             async:false,
             success:function(res){
@@ -42,7 +42,7 @@
         function get_forecast7d(){
             $.ajax({
                 type:"post",
-                url:"http://api.yytianqi.com/forecast7d",
+                url:"https://api.yytianqi.com/forecast7d",
                 dataType:"json",
                 data:{
                     city:city_num,
@@ -69,7 +69,7 @@
         function get_weatherindex() {
             $.ajax({
                 type:"post",
-                url:"http://api.yytianqi.com/weatherindex",
+                url:"https://api.yytianqi.com/weatherindex",
                 data:{
                     city:city_num,
                     key:"sbwv41ah6ihm5qsg"
@@ -107,7 +107,7 @@
         margin: 0;
     }
     body{
-        background: url('http://attach.bbs.miui.com/forum/201304/25/195151szk8umd8or8fmfa5.jpg') no-repeat;
+        background: url('https://attach.bbs.miui.com/forum/201304/25/195151szk8umd8or8fmfa5.jpg') no-repeat;
         background-size: 100%;
     }
     
