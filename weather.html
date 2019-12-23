@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        get_href = window.location.href
+        // 从前端获取到的城市名，无法直接用，已经url编码了，需要url解码
+        var city_Name = decodeURI(get_href.slice(get_href.indexOf("=")+1,get_href.length))
+            $.ajax({
+                type:"get",
+                url:"https://www.tianqiapi.com/api/",
+                dataType:"json",
+                data:{
+                    appid:69378456,
+                    appsecret:"Nm2eUYea",
+                    version:"v1",
+                    city:city_Name
+                },
+                success:function(responce,status){
+                    var new_data = responce
+                    if (new_data.city != city_Name){
+                        alert("输入错误,没有这个城市,请重新输入。")
+                        window.location.href="index.html"
+                    }
+                    day_weather=new_data.data
+                    $(".city").append(new_data.city)
+                    $(".date").append(new_data.update_time + "</br>")
+                    $(".intr").append("今日湿度：" + day_weather[0].humidity+"</br>")
+                    $(".intr").append("今日空气指数,质量："+day_weather[0].air + "，" +
+                                            day_weather[0].air_level + "</br>")
+                    $(".intr").append("空气描述：" + day_weather[0].air_tips+"</br>")
+                    switch(day_weather[0].wea_img){
+                        case 'xue' :url_img="url(JPEG/xue.jpg)"
+                            break
+                        case 'lei':url_img="url(JPEG/yu.jpg)"
+                            break
+                        case 'yu':url_img="url(JPEG/yu.jpg)"
+                            break
+                        case 'bingbao':url_img="url(JPEG/yu.jpg)"
+                            break
+                        case 'wu':url_img="url(JPEG/wu.jpg)"
+                            break
+                        case 'shachen':url_img="url(JPEG/wu.jpg)"
+                            break
+                        case 'yin':url_img="url(JPEG/wu.jpg)"
+                            break
+                        case 'yun':url_img="url(JPEG/yun.jpg)"
+                            break
+                        default:
+                            url_img="url(JPEG/qing.jpg)"
+                    }
+                    console.log(url_img)
+                    $(".bg").css({"background":url_img,"background-size":'100%'})
+                    for(i=0;i<7;i++){
+                        class_name = ".weather" + i;
+                        $(class_name).html( 
+                                            ""+day_weather[i].week + "</br>" + 
+                                            "日期：" +day_weather[i].date +  "</br>"  +
+                                            "天气："+day_weather[i].wea + "</br>" +
+                                            "气温：" +  day_weather[i].tem1 + "~" +
+                                            day_weather[i].tem2 + "</br>" + 
+                                            "风向：" + day_weather[i].win[0] + 
+                                            day_weather[i].win[1] + "</br>" + 
+                                            "风力：" + day_weather[i].win_speed + "</br>" 
+                                            )
+                    }
+                    for (i=0;i<6;i++){
+                    $(".weatherindex").append("<tr><td>"+day_weather[0].index[i].title+ "</td>" +
+                                "<td>" + day_weather[0].index[i].level+"</td><td>"+
+                                    day_weather[0].index[i].desc+"</td></tr>")
+                    }
+                },
+            })
+        $(function () {
+            $(".sty").hover(function(){
+                $(this).css({"color":"#e9faff","background":"#32407b"})
+                $(".mb").css({"margin-left":$(this).offset().left-68})
+            }),
+            $(".sty").on("mouseleave",function(){
+                $(this).css({"color":"black","background":"none"})
+            })
+        })
+    </script>
+<style>
+    *{
+        margin: 0;
+    }
+
+    .sty{
+        width: 170px;
+        float: left;
+        color:black;
+        line-height: 35px;
+        font-size: 13px;
+        margin: 0 10px;
+        padding: 5px;
+        transition: all 0.5s;
+    }
+    .data{
+        width: 1400px;
+        height: 217px;
+        margin: 30px auto 0;
+        position: relative;
+        background:rgba(243,243,243,0.5);
+    }
+    .mb{
+        height: 10px;
+        width: 180px; 
+        margin-left:10px;
+        background:#32407b;
+        display: block;
+        float:none;
+        position: absolute;
+        transition: all 0.5s ease;   
+        }
+
+    .center{
+        text-align: center;
+    }
+    .white{
+        color: #f3f3f3;
+    }
+    .date{
+        margin-top:1rem;
+        font-size: 12px;
+    }
+    .intr{
+        font-size: 12px;
+        color: #f3f3f3;
+    }
+.weatherindex{
+    font-size: 13px;
+    margin: 10px auto  0;
+}
+th{
+    color: #255e95;
+    background-color:rgba(233, 250, 255, 0.8);
+}
+td{
+    background:rgba(243,243,243,0.7);
+    transition:all 0.2s;
+    cursor:default;
+}
+tr:hover td{
+    color: whitesmoke;
+    background:#255e95;
+}
+</style>
+</head>
+<body class="bg">
+    <div class="center">
+        <h2 class="city white">天气预报：</h2>
+        <p class="date white">更新时间：</p>
+        <p class="intr"></p>
+        <div class="data">
+            <span class="mb"></span>
+            <div class="sty weather0"></div>
+            <div class="sty weather1"></div>
+            <div class="sty weather2"></div>
+            <div class="sty weather3"></div>
+            <div class="sty weather4"></div>
+            <div class="sty weather5"></div>
+            <div class="sty weather6"></div>
+        </div>
+    </div>
+    <div>
+        <div class="center">
+            <table class="weatherindex" border="0" cellpadding="8" cellspacing="2">
+                <tr><th>参数</th><th>指数</th><th>建议</th></tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
