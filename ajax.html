@@ -51,7 +51,7 @@
                             url_img="url(JPEG/qing.jpg)"
                     }
                     console.log(url_img)
-                    $(".bg").css({"background":url_img,'background-size:':'100%'})
+                    $(".bg").css({"background":url_img,"background-size":'100%'})
                     for(i=0;i<7;i++){
                         class_name = ".weather" + i;
                         $(class_name).html( 
@@ -100,7 +100,7 @@
     }
     .data{
         width: 1400px;
-        height: 247px;
+        height: 217px;
         margin: 30px auto 0;
         position: relative;
         background:rgba(243,243,243,0.5);
@@ -123,14 +123,15 @@
         color: #f3f3f3;
     }
     .date{
-        margin-top: 10px;
-        font-size: 14px;
+        margin-top:1rem;
+        font-size: 12px;
     }
     .intr{
-        font-size: 14px;
+        font-size: 12px;
         color: #f3f3f3;
     }
 .weatherindex{
+    font-size: 13px;
     margin: 10px auto  0;
 }
 th{
