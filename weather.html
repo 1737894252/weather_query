@@ -33,26 +33,8 @@
                     $(".intr").append("今日空气指数,质量："+day_weather[0].air + "，" +
                                             day_weather[0].air_level + "</br>")
                     $(".intr").append("空气描述：" + day_weather[0].air_tips+"</br>")
-                    switch(day_weather[0].wea_img){
-                        case 'xue' :url_img="url(JPEG/xue.jpg)"
-                            break
-                        case 'lei':url_img="url(JPEG/yu.jpg)"
-                            break
-                        case 'yu':url_img="url(JPEG/yu.jpg)"
-                            break
-                        case 'bingbao':url_img="url(JPEG/yu.jpg)"
-                            break
-                        case 'wu':url_img="url(JPEG/wu.jpg)"
-                            break
-                        case 'shachen':url_img="url(JPEG/wu.jpg)"
-                            break
-                        case 'yin':url_img="url(JPEG/wu.jpg)"
-                            break
-                        case 'yun':url_img="url(JPEG/yun.jpg)"
-                            break
-                        default:
-                            url_img="url(JPEG/qing.jpg)"
-                    }
+                        
+                    url_img="url(./JPEG/" + day_weather[0].wea_img + ".jpg)"
                     console.log(url_img)
                     $(".bg").css({"background":url_img,"background-size":'100%'})
                     for(i=0;i<7;i++){
