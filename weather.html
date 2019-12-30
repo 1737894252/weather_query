@@ -26,6 +26,7 @@
                         alert("输入错误,没有这个城市,请重新输入。")
                         window.location.href="index.html"
                     }
+                    else{
                     day_weather=new_data.data
                     $(".city").append(new_data.city)
                     $(".date").append(new_data.update_time + "</br>")
@@ -55,7 +56,8 @@
                                 "<td>" + day_weather[0].index[i].level+"</td><td>"+
                                     day_weather[0].index[i].desc+"</td></tr>")
                     }
-                },
+                    }
+                }
             })
         $(function () {
             $(".sty").hover(function(){
