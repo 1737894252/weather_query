@@ -37,7 +37,7 @@
                         
                     url_img="url(./JPEG/" + day_weather[0].wea_img + ".jpg)"
                     console.log(url_img)
-                    $(".bg").css({"background":url_img,"background-size":'100%'})
+                    $(".bg").css({"background":url_img + 'no-repeate',"background-size":'100%'})
                     for(i=0;i<7;i++){
                         class_name = ".weather" + i;
                         $(class_name).html( 
