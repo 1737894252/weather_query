@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ajax</title>
+    <title>天气查询</title>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script>
         get_href = window.location.href
         // 从前端获取到的城市名，无法直接用，已经url编码了，需要url解码
         var city_Name = decodeURI(get_href.slice(get_href.indexOf("=")+1,get_href.length))
+        document.title = city_Name
             $.ajax({
                 type:"get",
                 url:"https://www.tianqiapi.com/api/",
@@ -73,7 +74,6 @@
     *{
         margin: 0;
     }
-
     .sty{
         width: 170px;
         float: left;
