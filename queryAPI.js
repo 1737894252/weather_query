@@ -51,7 +51,7 @@ document.title = city_Name
 $(function () {
     $(".sty").hover(function(){
         $(this).css({"color":"#e9faff","background":"#32407b"})
-        $(".mb").css({"margin-left":$(this).offset().left-68})
+        $(".mb").css({"margin-left":$(this).offset().left--$(document.body).width()*0.12})
     }),
     $(".sty").on("mouseleave",function(){
         $(this).css({"color":"black","background":"none"})
